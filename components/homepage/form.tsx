@@ -18,7 +18,6 @@ const Form = () => {
     setActive(true);
   };
 
-  console.log('amel syntaxFunction', syntaxFunction);
   function isBalancedParentheses(parentheses: string) {
     const stack = [];
     for (let i = 0; i < parentheses.length; i++) {
@@ -37,9 +36,9 @@ const Form = () => {
 
   return (
     <div>
-      <div className="flex justify-between gap-7">
-        <Box className="font-mono">
-          <p className="tracking-wide text-xl">
+      <div className="flex justify-between flex-col md:flex-row gap-7">
+        <Box className="font-mono w-[19rem] md:w-fit">
+          <p className="tracking-wide text-base md:text-xl">
             Check are the parentheses balanced?
           </p>
           <div className="pt-4">
@@ -49,14 +48,17 @@ const Form = () => {
                 placeholder="Input your parentheses"
                 {...register('parentheses')}
               />
-              <Button type="submit" className="mt-4 text-lg text-center">
+              <Button
+                type="submit"
+                className="mt-3 md:mt-4 text-lg text-center"
+              >
                 Check
               </Button>
             </form>
           </div>
         </Box>
         {isActiveSecondBox && (
-          <Box className="font-mono leading-9">
+          <Box className="font-mono leading-9 w-[19rem] md:w-fit">
             <p>Output :</p>
             <div className="flex gap-3">
               {`"${parentheses}" is`}{' '}
@@ -91,6 +93,12 @@ const Box = styled.div`
   box-shadow: 5px 3px 14px #bdcdd6;
   padding: 1.5rem;
   border-radius: 10px;
+  max-width: none;
+
+  @media (max-width: 450px) {
+    padding: 1rem;
+    max-width: 19rem;
+  }
 `;
 
 const InputCustom = styled.input`
@@ -102,6 +110,10 @@ const InputCustom = styled.input`
 
   :focus-visible {
     outline: none;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0.5rem 0.4rem;
   }
 `;
 
@@ -117,8 +129,13 @@ const Button = styled.button`
 `;
 
 const Pharase = styled.div`
+  overflow-x: none;
   #content__syntax {
     margin-left: 15px;
+  }
+
+  @media (max-width: 450px) {
+    overflow-x: scroll;
   }
 `;
 
